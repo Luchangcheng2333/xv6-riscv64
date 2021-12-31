@@ -1,5 +1,5 @@
-#include "kernel/include/types.h"
-#include "kernel/include/param.h"
+#include "types.h"
+#include "param.h"
 #include "xv6-user/user.h"
 
 /**

@@ -1,8 +1,8 @@
 // Shell.
 
-#include "kernel/include/types.h"
+#include "types.h"
 #include "xv6-user/user.h"
-#include "kernel/include/fcntl.h"
+#include "fcntl.h"
 
 // Parsed command representation
 #define EXEC  1
@@ -303,13 +303,11 @@ main(void)
           fprintf(2, "Usage: export [-p] [NAME=VALUE]\n");
         else if(export(ecmd->argv) < 0)
           fprintf(2, "export failed\n");
-        free(cmd);
         continue;
       }
       else if(fork1() == 0) 
         runcmd(cmd);
       wait(0);
-      free(cmd);
     }
   }
   exit(0);
@@ -533,7 +531,7 @@ parseredirs(struct cmd *cmd, char **ps, char *es)
       cmd = redircmd(cmd, q, eq, O_WRONLY|O_CREATE|O_TRUNC, 1);
       break;
     case '+':  // >>
-      cmd = redircmd(cmd, q, eq, O_WRONLY|O_CREATE|O_APPEND, 1);
+      cmd = redircmd(cmd, q, eq, O_WRONLY|O_CREATE, 1);
       break;
     }
   }

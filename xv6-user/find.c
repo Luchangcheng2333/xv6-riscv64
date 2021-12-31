@@ -1,6 +1,6 @@
-#include "kernel/include/types.h"
-#include "kernel/include/stat.h"
-#include "kernel/include/fcntl.h"
+#include "types.h"
+#include "stat.h"
+#include "fcntl.h"
 #include "xv6-user/user.h"
 
 static char path[512];
@@ -32,7 +32,7 @@ void find(char *filename)
         *++p = '/';
     }
     p++;
-    while (readdir(fd, &st)) {
+    while (dir(fd, &st)) {
         strcpy(p, st.name);
         if (strcmp(p, ".") == 0 || strcmp(p, "..") == 0) {
             continue;

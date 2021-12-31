@@ -1,5 +1,5 @@
-#include "kernel/include/types.h"
-#include "kernel/include/stat.h"
+#include "types.h"
+#include "stat.h"
 #include "xv6-user/user.h"
 
 char buf[512];
@@ -29,7 +29,7 @@ wc(int fd, char *name)
     printf("wc: read error\n");
     exit(1);
   }
-  printf("%d\t%d\t%d\t%s\n", l, w, c, name);
+  printf("%d %d %d %s\n", l, w, c, name);
 }
 
 int
@@ -42,7 +42,6 @@ main(int argc, char *argv[])
     exit(0);
   }
 
-  printf("LINE\tWORD\tBYTE\tFILE\n");
   for(i = 1; i < argc; i++){
     if((fd = open(argv[i], 0)) < 0){
       printf("wc: cannot open %s\n", argv[i]);

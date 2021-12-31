@@ -1,5 +1,5 @@
-#include "kernel/include/types.h"
-#include "kernel/include/stat.h"
+#include "types.h"
+#include "stat.h"
 #include "xv6-user/user.h"
 
 char*
@@ -39,7 +39,7 @@ ls(char *path)
   }
 
   if (st.type == T_DIR){
-    while(readdir(fd, &st) == 1){
+    while(dir(fd, &st) == 1){
       printf("%s %s\t%d\n", fmtname(st.name), types[st.type], st.size);
     }
   } else {
